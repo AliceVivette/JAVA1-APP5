@@ -2,6 +2,7 @@ import java.util.*;
 
 
 public class Pharmacie {
+    public ArrayList<Client> clients = new ArrayList();
 
     public void appro_stock(){
 

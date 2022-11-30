@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.HashMap; // import the HashMap class
+
 
 public class Client {
     String nom, prenom;

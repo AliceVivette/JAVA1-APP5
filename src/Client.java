@@ -18,8 +18,8 @@ public class Client {
 
     }
 
-    public String affichage_client(){
-        return "Nom : " + this.nom + "\nPrénom : " + this.prenom + "\nNuméro de sécurité sociale : " + this.numero_secu + "\nAdresse : " + this.adresse + "\nNuméro de téléphone : " + this.num_tel;
+    public void affichage_client(){
+        System.out.println("Nom : " + this.nom + "\nPrénom : " + this.prenom + "\nNuméro de sécurité sociale : " + this.numero_secu + "\nAdresse : " + this.adresse + "\nNuméro de téléphone : " + this.num_tel);
     }
 
     

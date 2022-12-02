@@ -4,19 +4,28 @@ import java.util.HashMap; // import the HashMap class
 
 public class Pharmacie {
 
-    public HashMap<String, Integer> liste_médoc = new HashMap<String, Integer>();
    
-    public void appro_stock(){
-        
+    public static void appro_stock(String ref,Integer quantité, HashMap<String,Integer> medoc, ArrayList<Medicament> liste_medocs){
+        for (int i = 0 ; i < liste_medocs.size(); i++){
+            if(ref.equals(liste_medocs.get(i).reference)){
+                Integer quantity = medoc.get(ref);
+                quantity+=quantité;
+                medoc.replace(ref, quantity);
+            }
+        }
     }
+    
+
     
 
     public void retrait_achat(){
 
     }
 
-    public void ajout_ref_medoc() {
-
+    public void ajout_medoc(String ref, String lib, String descrip, String prix, Integer Qt, HashMap<String,Integer> medocs,ArrayList<Medicament> list_m ) {
+        Medicament m= new Medicament(ref, lib, descrip, prix, Qt);
+        list_m.add(m);
+        medocs.put(lib,Qt);
     }
 
     public void ajout_client() {
@@ -34,6 +43,7 @@ public class Pharmacie {
     }
 
     public void achat_medoc(String ref, int qt, ArrayList<Medicament> liste_achat){
+        
 
     }
 
@@ -49,9 +59,22 @@ public class Pharmacie {
     }
 
     public static void main(String[] args) throws Exception {
-        ArrayList<Client> liste_clients=new ArrayList<Client>();;
+        ArrayList<Client> liste_clients=new ArrayList<Client>();
+        ArrayList<Medicament> liste_medocs=new ArrayList<Medicament>();
+        HashMap<String, Integer> liste_médoc = new HashMap<String, Integer>();
 
-        Medicament m1 = new Medicament("DLP500", "doliprane 500mg", "antalgique", "2,86 €", 1);
+        Medicament doliprane = new Medicament("DLP500", "doliprane 500mg", "antalgique", "2,86 €", 1);
+        Medicament maxilase = new Medicament("MAX", " maxilase", "toux", "5 €", 6);
+        Medicament ibuprofene = new Medicament("IBU", " ibuprofène", "anti-inflamatoire", "4,5 €", 10);
+        
+        liste_medocs.add(doliprane);
+        liste_medocs.add(maxilase);
+        liste_medocs.add(ibuprofene);
+
+        for( Medicament medoc : liste_medocs){
+            liste_médoc.put(medoc.reference,medoc.quantite);
+        }
+
 
         Client c1 = new Client("ROY", "Victorine", "2020778158258", "Chateau de Versailles", "06 62 03 12 96");
         Client c2 = new Client("VIVET", "Alice", "1234567898765", "Chateau de Versailles", "06 62 03 12 96");
@@ -66,7 +89,12 @@ public class Pharmacie {
         }
         
 
-        recherche_client(liste_clients, "1234567898765");
+        //recherche_client(liste_clients, "1234567898765");
+        
+
+        System.out.println(liste_médoc);
+
+    
 
         
     }

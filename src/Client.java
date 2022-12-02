@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.HashMap; // import the HashMap class
 
 
 public class Client {
@@ -7,7 +6,7 @@ public class Client {
     String numero_secu;
     String adresse;
     String num_tel;
-    ArrayList<Medicament> liste_achat = new ArrayList();
+    ArrayList<Medicament> liste_achat = new ArrayList<Medicament>();
 
     public Client(String n, String p, String secu, String ad, String tel){
         this.nom=n;

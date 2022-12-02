@@ -1,5 +1,3 @@
-import java.util.HashMap; // import the HashMap class
-
 
 public class Medicament {
     String reference;

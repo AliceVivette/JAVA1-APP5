@@ -16,10 +16,34 @@ public class Pharmacie {
     }
     
 
-    
 
-    public void retrait_achat(){
-
+    public static void retrait_achat(ArrayList<Client> liste_clients, HashMap<String, Integer> liste_médoc,ArrayList<Medicament> liste_medocs, String num_c, String num_m, int q){
+        for(int i = 0 ; i < liste_clients.size(); i++){
+            if (num_c.equals(liste_clients.get(i).numero_secu)){
+                // on trouve le client
+                if (liste_médoc.get(num_m)!=null){
+                    // si la ref existe, on retire la quantité désirée au stock
+                    int q_av = liste_médoc.get(num_m);
+                    int q_ap = q_av - q;
+                    if (q_ap < 0){
+                        System.out.println("Il n'y a plus assez de stock sur ce médicament");
+                    }
+                    else{
+                        liste_médoc.replace(num_m, q_av, q_ap);
+                        for(int j = 0 ; j < liste_medocs.size(); j++){
+                            if (num_m.equals(liste_medocs.get(j).reference)){
+                                // ajout de cet achat à l'historique du client
+                                liste_clients.get(i).liste_achat.add(liste_medocs.get(j));
+                                System.out.println("achat réussi");
+                            }
+                        }  
+                    }      
+                }
+                else {
+                    System.out.println("la ref n'a pas été trouvé");
+                }
+            }
+        }    
     }
 
     public void ajout_medoc(String ref, String lib, String descrip, String prix, Integer Qt, HashMap<String,Integer> medocs,ArrayList<Medicament> list_m ) {
@@ -37,14 +61,7 @@ public class Pharmacie {
             if (secu.equals(liste_clients.get(i).numero_secu)){
                 liste_clients.get(i).affichage_client();
             }
-
         }
-
-    }
-
-    public void achat_medoc(String ref, int qt, ArrayList<Medicament> liste_achat){
-        
-
     }
 
 
@@ -91,8 +108,9 @@ public class Pharmacie {
 
         //recherche_client(liste_clients, "1234567898765");
         
+        retrait_achat(liste_clients,liste_médoc,liste_medocs,"1234567898765","IBU", 12);
 
-        System.out.println(liste_médoc);
+        // System.out.println(liste_médoc);
 
     
 

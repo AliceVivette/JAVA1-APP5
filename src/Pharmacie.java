@@ -168,7 +168,7 @@ public class Pharmacie {
         
 		AddClient.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-                JFrame jf=new JFrame();
+                /*JFrame jf=new JFrame();
 				JTextField getNOM = new JTextField ("Entrez le nom du client");
                 JTextField getPRENOM = new JTextField ("Entrez le prenom du client");
                 JTextField getSECU = new JTextField ("Entrez le numéro de sécurité sociale du client");
@@ -184,10 +184,25 @@ public class Pharmacie {
 
                 jf.setSize(150,250);
 				jf.setLocationRelativeTo(null);
-				jf.setVisible(true);
+				jf.setVisible(true);*/
+
+                JFrame jf=new JFrame();
+                JPanel pane1=new JPanel();
+
+				String getNOM = JOptionPane.showInputDialog(jf, "Entrez le nom du client");
+            	String getPRENOM = JOptionPane.showInputDialog(jf, "Entrez le prénom du client");
+                String getSECU = JOptionPane.showInputDialog(jf, "Entrez le numéro de sécurité sociale du client");
+                String getADRESSE = JOptionPane.showInputDialog(jf, "Entrez l'adresse du client'");
+                String getTEL = JOptionPane.showInputDialog(jf, "Entrez le numéro de téléphone du client");
                 Client C = new Client(getNOM.getText(), getPRENOM.getText(), getSECU.getText(), getADRESSE.getText(), getTEL.getText());
 
                 
+                pane1.add(getNOM);
+				pane1.add(getPRENOM);
+				pane1.add(getSECU);
+				pane1.add(getADRESSE);
+				pane1.add(getTEL);
+
                 // Verifier Exception sur numero sécu
                 try {     
                 check_num(C.numero_secu);  
@@ -196,6 +211,8 @@ public class Pharmacie {
                 catch (Num_Exception ex){     
                 System.out.println(ex);  
                 }
+
+                JOptionPane.showMessageDialog("Client enregistré");
 
             }
         });
